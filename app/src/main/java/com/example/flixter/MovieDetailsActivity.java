@@ -2,6 +2,7 @@ package com.example.flixter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -24,6 +25,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     RatingBar rbVoteAverage;
     ImageView imageView2;
 
+    String imageURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
 
-        String imageURL = movie.getPosterPath();
+        //imageURL = movie.getPosterPath();
+
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            imageURL = movie.getBackdropPath();
+        } else {
+            imageURL = movie.getPosterPath();
+        }
         Glide.with(this).load(imageURL).into(imageView2);
 
         // vote average is 0..10, convert to 0..5 by dividing by 2
