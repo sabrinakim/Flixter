@@ -49,10 +49,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             imageURL = movie.getBackdropPath();
+            Glide.with(this).load(imageURL).placeholder(R.drawable.flicks_backdrop_placeholder)
+                    .into(imageView2);
         } else {
             imageURL = movie.getPosterPath();
+            Glide.with(this).load(imageURL).placeholder(R.drawable.flicks_backdrop_placeholder)
+                    .into(imageView2);
         }
-        Glide.with(this).load(imageURL).into(imageView2);
+        //Glide.with(this).load(imageURL).into(imageView2);
 
         // vote average is 0..10, convert to 0..5 by dividing by 2
         float voteAverage = movie.getVoteAverage().floatValue();

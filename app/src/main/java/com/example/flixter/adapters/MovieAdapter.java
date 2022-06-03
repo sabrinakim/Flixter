@@ -102,14 +102,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             // if phone is in landscape,
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imageURL = movie.getBackdropPath();
+                Glide.with(context).load(imageURL).placeholder(R.drawable.flicks_backdrop_placeholder)
+                        .into(ivPoster);
             } else {
                 imageURL = movie.getPosterPath();
+                Glide.with(context).load(imageURL).placeholder(R.drawable.flicks_movie_placeholder)
+                        .into(ivPoster);
             }
             // set imageURL = backdrop image
             // else, imageURL = poster image.
 
             // glide can render remote images, but android can't
-            Glide.with(context).load(imageURL).into(ivPoster);
+            //Glide.with(context).load(imageURL).into(ivPoster);
         }
     }
 }
